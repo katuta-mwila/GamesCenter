@@ -10,6 +10,8 @@ To play either of the three games first create an account or login as a guest.
 * How to create an online chat. Example of this in the online mode.
 * Using exceptions to shortcut http request.
 * How to purchase a domain and use an official ssl certification.
+# Development
+GamesCenter uses .NET 7.0 for the backend API with the front end developed using react as a framework. All the data is stored on a mysql database with entity framework core 7 acting as the database access framework or ORM. The live example of the website is run on docker using a docker image and served via nginx.
 ## Game Modes
 ### Two Player Local
 This gamemode is for two players playing on the same computer.
