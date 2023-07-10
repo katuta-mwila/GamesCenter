@@ -9,7 +9,7 @@ To play either of the three games first create an account or login as a guest.
 * How to use Web Sockets. For the online mode web sockets were necessary to allow two way communication between the client and the server.
 * How to create an online chat. Example of this in the online mode.
 * Using exceptions to shortcut http request.
-* How to purchase a domain and use an official sll certification
+* How to purchase a domain and use an official ssl certification.
 ## Game Modes
 ### Two Player Local
 This gamemode is for two players playing on the same computer.
