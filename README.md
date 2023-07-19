@@ -1,10 +1,10 @@
-# GamesCenter
+# Games Center
 A website containing three games, Tic Tac Toe, Connect 4 and Checkers. All games can be played two player locally, singleplayer vs Ai or two player online.  
 An instance of the website is currently running live at https://gamescenter.online.
 
 To play either of the three games first create an account or login as a guest.
 # Development
-GamesCenter uses .NET 7.0 for the backend API with the front end developed using react as a framework. All the data is stored on a mysql database with entity framework core 7 acting as the database access framework or ORM. The live example of the website is run on docker using a docker image and served via nginx.
+Games Center uses .NET 7.0 for the backend API with the front end developed using react as a framework. All the data is stored on a mysql database with entity framework core 7 acting as the database access framework or ORM. The live example of the website is run on docker using a docker image and served via nginx.
 # What I Learned
 * How to create a game Ai using the [minimax](https://en.wikipedia.org/wiki/Minimax) Algorithm. Every game uses this algorithm to create the Ai, each of the difficulties have some slight adjustments to create sepereation between the difficulties.
 * How to use React context.
