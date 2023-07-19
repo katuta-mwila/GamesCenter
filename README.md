@@ -7,6 +7,7 @@ To play either of the three games first create an account or login as a guest.
 GamesCenter uses .NET 7.0 for the backend API with the front end developed using react as a framework. All the data is stored on a mysql database with entity framework core 7 acting as the database access framework or ORM. The live example of the website is run on docker using a docker image and served via nginx.
 # What I Learned
 * How to create a game Ai using the [minimax](https://en.wikipedia.org/wiki/Minimax) Algorithm. Every game uses this algorithm to create the Ai, each of the difficulties have some slight adjustments to create sepereation between the difficulties.
+* How to use React context.
 * How to use Web Workers in javascript. Because the Ai sometimes takes a non negligible time to calculate the best move this task was better done in the background of the application so that it does not hang the ui.
 * How to use Web Sockets. For the online mode web sockets were necessary to allow two way communication between the client and the server.
 * How to create an online chat. Example of this in the online mode.
