@@ -1,9 +1,11 @@
 import jwt_decode from "jwt-decode";
 class GlobalContextObject{
-    //url = "https://localhost" // testing
-    url = window.location.origin // production
+    url = "http://localhost:10050" // testing
+    hostname = "http://localhost"
+
+    /*url = window.location.origin // production
     hostname = window.location.hostname
-    sslPort = 7050
+    sslPort = 7050*/
     token;
     constructor(){
         const cookies = document.cookie.split("; ")
