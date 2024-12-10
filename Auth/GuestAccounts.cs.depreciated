@@ -1,5 +1,5 @@
 namespace GamesHub.Auth;
-
+/* ---- DEPRECIATED ---- */
 public class GuestAccounts{
     private HashSet<Guid> validGuests = new HashSet<Guid>();
 

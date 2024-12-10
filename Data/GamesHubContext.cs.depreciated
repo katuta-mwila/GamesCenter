@@ -3,7 +3,7 @@ using GamesHub.Entities;
 using GamesHub.Protocol.Response;
 
 namespace ResultsNet.Data;
-
+/* DEPRECIATED */
 public class GamesHubContext : DbContext
 {
     private readonly ILogger<GamesHubContext> _logger;

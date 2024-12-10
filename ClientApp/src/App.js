@@ -3,7 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 import GlobalContextObject from './GlobalContextObject';
 import { Layout } from './components/Layout/Layout';
 import './custom.css';
+import './media.css'
 import RefinedPopupManager from './components/Layout/RefinedPopupManager';
+import { UserData } from './UserData.js';
 //import Home from "./Pages/Home/Home"
 
 export const GlobalContext = React.createContext()
@@ -17,6 +19,7 @@ const G = lazy(() => import("./Pages/Games/GamesSelector/g/g.js"))
 const Play = lazy(() => import("./Pages/Games/GamesSelector/g/play/play.js"))
 
 export default function App() {
+    UserData.loadData()
     const globalContextObject = new GlobalContextObject()
     return (
       <GlobalContext.Provider value={globalContextObject}>

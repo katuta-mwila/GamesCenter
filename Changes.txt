@@ -1,0 +1,6 @@
+Todo
+
+-- Remove database and all connections to database
+-- Remove authentication and authorization
+-- remove tokens
+-- adapt every page to work on a mobile device

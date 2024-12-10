@@ -27,6 +27,8 @@ public class MainController : ControllerBase
         return Ok();
     }*/
 
+
+    /* NEEDS CHANGES / REVIEW */
     [Route("/ws/{gameId}/{code}")]
     [ServiceFilter(typeof(HttpResponseExceptionFilter))] // allow pipeline short circuiting
     [ServiceFilter(typeof(GenericResourceFilter<GeneralResponse>))] // create response object

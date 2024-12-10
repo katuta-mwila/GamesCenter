@@ -6,7 +6,7 @@ using GamesHub.Entities;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GamesHub.Auth;
-
+/* ---- DEPRECIATED ---- */
 public static class AuthHelper
 {
     public static IConfiguration configuration;

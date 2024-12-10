@@ -1,4 +1,5 @@
 import jwt_decode from "jwt-decode";
+import { UserData } from "./UserData";
 class GlobalContextObject{
     url = "http://localhost:10050" // testing
     hostname = "http://localhost"
@@ -8,7 +9,10 @@ class GlobalContextObject{
     sslPort = 7050*/
     token;
     constructor(){
-        const cookies = document.cookie.split("; ")
+      this.token = {
+        Username: UserData.getName()
+      }
+        /*const cookies = document.cookie.split("; ")
         for (let i = 0; i < cookies.length; i++){
             const cookie = cookies[i]
             if (cookie.startsWith("gameshub_token"))
@@ -16,7 +20,7 @@ class GlobalContextObject{
                 const token = cookie.substring(15)
                 this.token = jwt_decode(token)
             }
-        }
+        }*/
     }
 }
 

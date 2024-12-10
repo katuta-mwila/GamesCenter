@@ -1,9 +1,12 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import { GameContext } from '../../../Pages/Games/GamesSelector/g/play/play'
 import connnectgrid from "../../../assets/connectgrid2.png"
 import Helper from '../../../util/Helper'
 
 const ConnectBoard = () => {
+    const boardRef = useRef()
+    const [boardScale, setBoardScale] = useState(1)
+
     const gameContextObject = useContext(GameContext)
     const connectGame = gameContextObject.game
 
@@ -31,10 +34,11 @@ const ConnectBoard = () => {
             const match = gameState.stateObj[i]
             const [y1, x1] = match.matchStart
             const [y2, x2] = match.matchEnd
-            const centerA = {x:60 + (110 * x1), y: 610 - (110 * y1)}
-            const centerB = {x:60 + (110 * x2), y: 610 - (110 * y2)}
+            const centerA = {x:(60 + (110 * x1)) * boardScale, y: (610 - (110 * y1)) * boardScale}
+            const centerB = {x:(60 + (110 * x2)) * boardScale, y: (610 - (110 * y2)) * boardScale}
 
-            const line = document.createElement("div")
+            const line = document.getElementById('connect-4-line') ?? document.createElement("div")
+            line.id = 'connect-4-line'
             line.className = "connect-line"
             line.style.zIndex = 100
             line.style.left = centerA.x + "px"
@@ -45,6 +49,19 @@ const ConnectBoard = () => {
             connectBoard.appendChild(line)
         }
     })
+
+    const adjustScale = () =>{
+      const boardWidth = boardRef.current.width
+     setBoardScale(prev =>{
+      console.log(prev, boardWidth / 780)
+      return boardWidth / 780
+     })
+    }
+
+    useEffect(() =>{
+      window.addEventListener('resize', adjustScale)
+      adjustScale()
+    }, [])
 
     const imageLoaded = () =>{
         gameContextObject.forceReload(true) 
@@ -57,27 +74,28 @@ const ConnectBoard = () => {
     let prevX = 0
     return (
         <div className="connect-board" id="game-board">
-            <img className="connect-board-image" src={connnectgrid} width="780px" onLoad={imageLoaded} draggable={false}/>
+            <img ref={boardRef} className="connect-board-image" src={connnectgrid} width={`${780 * boardScale}px`} onLoad={imageLoaded} draggable={false}/>
             {[...Array(42)].map((x, i) =>{
-                const pos = connectGame.getPos(i)
+                const [row, column] = connectGame.getPos(i)
                 const symbol = connectGame.getSymbol(i)
                 const chipClass = symbol == 1 ? "connect-chip player1" : "connect-chip player2"
                 const id = `connectchip${i}`
                 
                 if (symbol == 1 || symbol == 2){
-                    const posX = (10 + (110 * pos[1]))
-                    const posY = (560 - (110 * [pos[0]]))
+                    const posX = (10 + (110 * column)) * boardScale
+                    const posY = (560 - (110 * row)) * boardScale
                     let transform
-                    transform = connectGame.lastPlacedUi == i ?  `translateY(${-posY - 110}px)` : null
-                    const transDuration = connectGame.getFallTime(pos[0])
+                    transform = connectGame.lastPlacedUi == i ?  `translateY(${(-posY - (110 * boardScale))}px)` : null
+                    const transDuration = connectGame.getFallTime(row)
+                    console.log("Render")
                     return (
-                        <div key={id} id={id} className={chipClass} style={{left: posX + "px", top: posY + "px", transform, transitionDuration: transDuration + "s"}}></div>
+                        <div key={id} id={id} className={chipClass} style={{width: `${100 * boardScale}px`, height: `${100 * boardScale}px`, left: posX + "px", top: posY + "px", transform, transitionDuration: transDuration + "s"}}></div>
                     )
                 }
             })}
             {[...Array(7)].map((x, i) =>{
                 const posX = prevX
-                const width = (i == 0 || i == 6) ? 115 : 110
+                const width = (i == 0 || i == 6) ? (115 * boardScale) : (110 * boardScale)
                 prevX = posX + width
                 return (
                     <div key={"listiner" + i} id={"connectlistener" + i} className="connect-listener" style={{left: posX + "px", top: 0, width: width + "px"}} onClick={() => columnClick(i)}></div>

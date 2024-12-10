@@ -1,6 +1,19 @@
 /* Provide sufficient contrast against white background */
+:root{
+  --nav-height: 80px;
+  --main-height: calc(100vh - var(--nav-height));
+}
+
+#root{
+  overflow: hidden;
+}
+
 h1{
   margin: 0;
+}
+
+h1{
+  font-size: 40px;
 }
 
 .simple-center
@@ -44,6 +57,10 @@ body{
   background-size: cover;
 }
 
+#root{
+  min-height: 100vh;
+}
+
 
 .btn-primary {
   color: #fff;
@@ -56,17 +73,25 @@ body{
 {
   display: flex;
   position: fixed;
-  width: 100%;
-  height: 80px;
+  width: 100vw;
+  height: var(--nav-height);
   border-bottom: 2px solid #000;
   background-color: #556fa7;
   z-index: 100;
+
+  overflow: hidden;
+  top: 0;
+  left: 0;
 }
 
 #main-header-left
 {
   flex: 1 1 0;
   align-items: center;
+}
+
+.super-header{
+  font-size: 70px;
 }
 
 #main-header-center
@@ -87,13 +112,12 @@ body{
 
 #main-body
 {
-  position: absolute;
+  position: relative;
   left: 0px;
-  min-width: 100%;
-  top: 80px;
-  min-height: calc(100% - 80px);
+  top: var(--nav-height);
+  min-height: var(--main-height);
   /*height: calc(100% - 80px);*/
-  display: flex;
+  overflow: hidden;
 }
 
 #auth-page
@@ -104,11 +128,15 @@ body{
   min-width: 500px;
 }
 
+.menu-page{
+ min-height: var(--main-height);
+ color: white;
+}
+
+
 #games-selection-page
 {
-  flex-direction: column;
-  width: 100%;
-  min-height: 100%;
+
 }
 
 #auth-section
@@ -219,11 +247,6 @@ body{
   column-gap: 20px;
 }
 
-.game-frame-border{
-  border: 4px solid #000;
-  background-color: #fff;
-}
-
 .game-frame{
   cursor: pointer;
   display: flex;
@@ -241,6 +264,16 @@ body{
 .outside-frame{
   /*border: 1px solid black;*/
   padding: 20px 20px 0 20px;
+}
+
+.game-frame-border{
+  border: 4px solid #000;
+  background-color: #fff;
+}
+
+.game-frame-img{
+  width: 300px;
+  height: 300px;
 }
 
 .title-section{
@@ -269,10 +302,6 @@ body{
 }
 
 #GContainer{
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 .chalk-background{
@@ -321,6 +350,11 @@ body{
   border-radius: 3px;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
+}
+
+.ca{
+  text-align: center;
 }
 
 .menu-button:hover{
@@ -330,6 +364,7 @@ body{
 
 .menu-button > text{
   color: white;
+  font-size: 21px;
 }
 
 .menu-button:hover > text{
@@ -376,6 +411,7 @@ body{
   display: flex;
   /*background: radial-gradient(circle, rgba(252,252,252,1) 0%, rgba(223,223,223,1) 100%);*/
   background: radial-gradient(circle, rgba(252,252,252,1) 15%, rgba(196,196,196,1) 100%);
+  height: var(--main-height)
 }
 
 #game-action-area{
@@ -386,21 +422,36 @@ body{
   flex-direction: column;
   /*background-color: #fff;*/
   overflow: hidden;
+
+  position: relative;
+}
+
+.sidebar-toggler{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+.toggler-container{
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 10px 0 0;
 }
 
 #game-state-header{
-  padding: 20px;
+  padding: 20px 60px 20px 60px;
   /*border-bottom: 1px solid #000;*/
   width: 100%;
 }
 
 #game-sidebar{
   /*background-color: #6179a5;*/
-  z-index: 2;
+  z-index: 101;
   border-right: 3px solid #000;
-  flex: 0 1 0;
-  max-width: 20%;
-  min-width: 315px;
+  width: 315px;
   display: flex;
   flex-direction: column;
 }
@@ -410,10 +461,9 @@ body{
 }
 
 #game-sidebar-fixed{
-  height: calc(100% - 80px);
+  height: var(--main-height);
   position: fixed;
-  min-width: 315px;
-  max-width: 20%;
+  width: 315px;
   display: flex;
   flex-direction: column;
   background-color: #6179a5;
@@ -474,24 +524,25 @@ body{
 }
 
 #game-board{
-
+  
 }
 
 .tic-board{
   position: relative;
   display: grid;
   border: 1px solid #000;
-  width: 750px;
-  height: 750px;
-  min-height: 750px;
-  max-height: 750px;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(3, auto);
+  gap: 0;
+  margin: auto;
+  width: fit-content
   /*background-color: #fff;*/
 }
 
 .tic-box{
   border: 1px solid #000;
+  width: 250px;
+  height: 250px;
 }
 
 .tic-box > .tic-symbol{
@@ -543,6 +594,8 @@ body{
   /*background-color: blue;
   width: 780px;
   height: 670px;*/
+  display: flex;
+  justify-content: center;
 }
 
 .sidebar-button{
@@ -776,6 +829,25 @@ body{
   flex-direction: column;
 }
 
+.menu-input{
+  background-color: rgba(0, 0, 0, 0.5);
+  outline: none;
+  border: 2px solid black;
+  font-size: 21px;
+  padding: 10px;
+  border-radius: 4px;
+  color: white;
+}
+
+.menu-home{
+  width: 500px;
+}
+
+.menu-content{
+  max-width: 90vw;
+  padding: 50px 0;
+}
+
 #code-input{
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -789,8 +861,6 @@ body{
 }
 
 .connect-chip{
-  width: 100px;
-  height: 100px;
   border-radius: 50%;
   position: absolute;
   transition-property: transform;
@@ -810,6 +880,7 @@ body{
   border-radius: 1.5%;
   position: relative;
   user-select: none;
+  width: 780px;
 }
 
 .connect-listener{
@@ -825,10 +896,9 @@ body{
   display: grid;
   width: 760px;
   height: 760px;
-  max-width: 760px;
-  max-height: 760px;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
+  margin: auto;
 }
 
 .check-box{
@@ -888,7 +958,7 @@ body{
   background-color: #fff;
 }*/
 #gsp-top{
-  height: 150px;
+ /* height: 150px;*/
   align-items: end;
 }
 
@@ -897,7 +967,7 @@ body{
 }
 
 #gsp-bottom{
-  height: 150px;
+ /* height: 150px;*/
 }
 
 .header-username{

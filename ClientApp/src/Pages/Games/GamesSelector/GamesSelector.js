@@ -3,12 +3,15 @@ import GameFrame from './GameFrame'
 import tictactoe from "../../../assets/tictactoe.png"
 import fourchip from "../../../assets/fourchip2.png"
 import checkicon from "../../../assets/checkicon.jpg"
+import MenuPage from '../../../components/Layout/MenuPage'
+import ContentContainer from '../../../components/ContentContainer'
 
 const GamesSelector = () => {
   return (
-    <div id="games-selection-page" className="simple-center chalk-background">
+    <MenuPage id="games-selection-page">
+      <ContentContainer gap='30px' className='menu-content'>
         <div id="gsp-top" className="simple-center">
-          <h1 style={{fontSize: "80px", color: "white", fontWeight: "600"}}>Games</h1>
+          <h1 className='super-header' style={{color: "white", fontWeight: "600"}}>Games</h1>
         </div>
         <div id="gsp-center" className="simple-center">
           <div id="games-selection-grid">
@@ -18,7 +21,9 @@ const GamesSelector = () => {
           </div>
         </div>
         <div id="gsp-bottom"></div>
-    </div>
+      </ContentContainer>
+        
+    </MenuPage>
   )
 }
 

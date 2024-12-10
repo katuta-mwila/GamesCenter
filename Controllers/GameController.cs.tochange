@@ -32,7 +32,8 @@ public class GameController : ControllerBase
         return Ok($"GameController is alive");
     }
 
-    [HttpPost("autha/add-history")]
+    /* ---- DEPRECIATED ---- */
+    /*[HttpPost("autha/add-history")]
     [ServiceFilter(typeof(ValidationFilterAttribute))] // validate object in parameter using GetErrorCollections
     [ServiceFilter(typeof(GenericResourceFilter<GeneralResponse>))] // create response object
     [ServiceFilter(typeof(HttpResponseExceptionFilter))] // allow pipeline short circuiting
@@ -54,8 +55,9 @@ public class GameController : ControllerBase
         repository.CreateHistory(history);
         response.message = "Successfully made history :)";
         return Ok(response); 
-    }
+    }*/
 
+    /* NEEDS CHANGES / REVIEW */
     [HttpGet("authb/create-game/{gameId}")]
     [ServiceFilter(typeof(GenericResourceFilter<CreateGameResponse>))] // create response object
     [ServiceFilter(typeof(HttpResponseExceptionFilter))] // allow pipeline short circuiting
@@ -73,6 +75,7 @@ public class GameController : ControllerBase
         return Ok(response);
     }
 
+    /* NEEDS CHANGES / REVIEW */
     [HttpGet("authb/join-game/{gameId}/{code}")]
     [ServiceFilter(typeof(GenericResourceFilter<GeneralResponse>))] // create response object
     [ServiceFilter(typeof(HttpResponseExceptionFilter))] // allow pipeline short circuiting
@@ -87,6 +90,7 @@ public class GameController : ControllerBase
         return Ok(response);
     }
 
+    // for postman purposes
     [HttpGet("gameserver-info")]
     [ServiceFilter(typeof(GenericResourceFilter<GameInfoResponse>))] // create response object
     public async Task<IActionResult> GameserverInfo()

@@ -1,5 +1,6 @@
 namespace GamesHub.Auth;
 
+/* ---- DEPRECIATED ---- */
 public class TokenObject
 {
     public string Username {get; set;}

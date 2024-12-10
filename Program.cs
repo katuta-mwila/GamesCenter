@@ -1,11 +1,4 @@
-using GamesHub.Auth;
-using GamesHub.Controllers;
 using GamesHub.Filters;
-using GamesHub.Game.Server;
-using GamesHub.MiddleWare;
-using GamesHub.Protocol.Response;
-using GamesHub.Repositories;
-using ResultsNet.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,18 +22,14 @@ builder.Services.AddControllersWithViews(option =>{ // adds api controller
     option.SuppressAsyncSuffixInActionNames = false;
 });
 
-builder.Services.AddDbContext<GamesHubContext>();
-builder.Services.AddScoped<AuthRepository>();
-builder.Services.AddScoped<GameRepository>();
-builder.Services.AddSingleton<GameServer>();
-builder.Services.AddSingleton<GuestAccounts>();
+/*builder.Services.AddSingleton<GameServer>();*/
 
 builder.Services.AddScoped<ValidationFilterAttribute>();
 builder.Services.AddScoped(typeof(GenericResourceFilter<>));
 builder.Services.AddScoped<HttpResponseExceptionFilter>();
 
 var app = builder.Build();
-app.Services.GetService<GameServer>();
+/*app.Services.GetService<GameServer>();*/
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -65,8 +54,11 @@ app.UseWebSockets(new WebSocketOptions()
     KeepAliveInterval = TimeSpan.FromSeconds(30),
 });
 
-app.UseCustomAuthorization();
-app.UseMiddleware<RedirectWare>();
+/* ---- DEPRECIATED ---- */
+//app.UseCustomAuthorization();
+
+/* ---- NEEDS CHANGES ---- */
+//app.UseMiddleware<RedirectWare>();
 
 app.MapControllerRoute(
     name: "default",
@@ -74,6 +66,6 @@ app.MapControllerRoute(
 
 app.MapFallbackToFile("index.html");
 
-AuthHelper.configuration = app.Configuration;
+//AuthHelper.configuration = app.Configuration;
 
 app.Run();

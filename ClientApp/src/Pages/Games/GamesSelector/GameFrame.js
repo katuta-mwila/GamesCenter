@@ -7,7 +7,7 @@ const GameFrame = ({image, title, id}) => {
     <div className='game-frame'>
         <div className="outside-frame">
             <div className="game-frame-border">
-                <img src={image} width="300px" height="300px" title={title}/>
+                <img className='game-frame-img' src={image} title={title}/>
             </div>
         </div> 
         <div className='title-section simple-center'>

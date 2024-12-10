@@ -14,20 +14,21 @@ import GameChat from '../../../../../components/Game/GameChat'
 export const GameContext = React.createContext()
 
 function resizeBs(){
-    try{
+    /*try{
         const gameHeaderRect = document.getElementById("game-state-header").getBoundingClientRect()
         const gameBoardRect = document.getElementById("game-board").getBoundingClientRect()
         const gaaRect = document.getElementById("game-inner-content").getBoundingClientRect()
         const sidebarRect = document.getElementById("game-sidebar-fixed").getBoundingClientRect()
         const chatDiv = document.getElementById("game-chat-area")
-        chatDiv.style.height = Math.max(sidebarRect.height, gaaRect.height/*gameBoardRect.height + gameHeaderRect.height*/) + "px"
+        chatDiv.style.height = Math.max(sidebarRect.height, gaaRect.height/*gameBoardRect.height + gameHeaderRect.height*//*) + "px"
     }catch(err){
 
-    }
+    }*/
 }
 
 const Play = () => {
     const [searchParams, setSearchParams] = useSearchParams()
+    const [showSidebar, setShowSidebar] = useState(true)
     const globalContextObject = useContext(GlobalContext)
     const shouldResizeChat = useRef(true)
     const reload = useReload((refreshId, shouldResize) =>{
@@ -133,12 +134,29 @@ const Play = () => {
         }
     }
 
+    const toggleClick = () =>{
+      setShowSidebar(prev => !prev)
+    }
+
+    const showRightToggle = !showSidebar
+
+    const showLeftToggle = showSidebar
+
+    useEffect(() =>{
+      if (window.innerWidth <= 800)
+        setShowSidebar(false)
+    }, [])
+
   return (
     <GameContext.Provider value={contextObj}>
         {contextObj.gameId && <div id="game-division">
-            <div id="game-sidebar">
-                <div id="game-sidebar-fixed">
+            <div id="game-sidebar" style={{display: showSidebar ? undefined : 'none'}}>
+                <div id="game-sidebar-fixed" style={{display: showSidebar ? undefined : 'none'}}>
                     <div id="sidebar-top">
+                        <div className='toggler-container' style={{display: showLeftToggle ? undefined : 'none'}}>
+                          <i class="fa-solid fa-bars" style={{fontSize: '30px', cursor: 'pointer'}} onClick={toggleClick}></i>
+                        </div>
+                        
                         <div className="sidebar-centered-section">
                             <h1 style={{padding: "20px", fontSize: "35px"}}>{contextObj.gameName}</h1>
                             <div id="score-info">
@@ -184,6 +202,9 @@ const Play = () => {
                 </div>
             </div>
             <div id="game-action-area">
+                <div className='sidebar-toggler' onClick={toggleClick} style={{display: showRightToggle ? undefined : 'none'}}>
+                  <i class="fa-solid fa-bars" style={{fontSize: '30px', cursor: 'pointer'}}></i>
+                </div>
                 <div id="game-inner-content">
                     <div id="game-state-header" className="simple-center">
                         <h1 style={{fontSize: "27px", textAlign: "center"}}>{contextObj.game.uiProxy.getStateText()}</h1>

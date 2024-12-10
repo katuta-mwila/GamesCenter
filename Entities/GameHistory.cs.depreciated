@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace GamesHub.Entities;
 
+/* DEPRECIATED */
 public class GameHistory
 {
     public Guid GameHistoryId {get; set;}

@@ -7,6 +7,8 @@ import { MenuBuilder } from './MenuBuilder'
 import GameSocket from '../../../../components/Props/Game/NetCode/GameSocket'
 import { GlobalContext } from '../../../../App'
 import NotFound from '../../../NotFound/NotFound'
+import MenuPage from '../../../../components/Layout/MenuPage'
+import ContentContainer from '../../../../components/ContentContainer'
 
 function BuildMenu(gameId, reloader, globalContextObject){
     const builder = new MenuBuilder()
@@ -131,9 +133,11 @@ const G = () => {
     const is404 = gameInfo == null
   return (
     <>
-    {!is404 && <div id="GContainer" className="chalk-background">
+    {!is404 && 
+    <MenuPage id="GContainer">
+      <ContentContainer className='menu-content' gap='30px'>
         <div id="sec1">
-            <h1 style={{fontSize: "80px", color: "white", fontWeight: "600", textAlign: "center"}}>{gameInfo.name}</h1>
+            <h1 className='super-header' style={{ color: "white", fontWeight: "600", textAlign: "center"}}>{gameInfo.name}</h1>
         </div>
         <div id="sec2" className="simple-center">
             <GameMenu menuCollection={menuBuilder.getSelectedMenu()}/>
@@ -141,7 +145,8 @@ const G = () => {
         <div id="sec3">
 
         </div>
-    </div>}
+      </ContentContainer>
+    </MenuPage>}
     {is404 && <NotFound msg={"Game does not exist"}/>}
     </>
   )

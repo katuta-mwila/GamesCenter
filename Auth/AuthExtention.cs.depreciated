@@ -2,6 +2,7 @@ using GamesHub.MiddleWare;
 
 namespace GamesHub.Auth;
 
+/* ---- DEPRECIATED ---- */
 public static class AuthExtention
 {
     public static IApplicationBuilder UseCustomAuthorization(this IApplicationBuilder builder)

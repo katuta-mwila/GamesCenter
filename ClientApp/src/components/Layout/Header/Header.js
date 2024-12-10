@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import { GlobalContext } from '../../../App'
 import { useLocation } from 'react-router-dom'
+import { UserData } from '../../../UserData'
 
 const loginBlacklist = ["/login", "/register"]
 const logoutBlacklist = ["/login", "/register"]
@@ -11,7 +12,7 @@ const Header = () => {
   const token = globalContextObject.token
   const showLogout = token != null && token.Username.substring(0, 5) != "guest" && !logoutBlacklist.some(path => location.pathname.toLocaleLowerCase() == path)
   const showLogin = !showLogout && !loginBlacklist.some(path => location.pathname.toLocaleLowerCase() == path)
-  const showName = token != null && !loginBlacklist.some(path => location.pathname.toLocaleLowerCase() == path)
+  const showName = !loginBlacklist.some(path => location.pathname.toLocaleLowerCase() == path)
   const logoutClick = function(){
     document.cookie = "gameshub_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location.href = "/login"
@@ -30,9 +31,9 @@ const Header = () => {
         </div>
         <div id="main-header-right" className='main-header-section'>
         <div className="header-right-settings-section">
-          {showName && <div className="header-username">{token.Username}</div>}
-          {showLogout && <div className='header-logout-button' onClick={(logoutClick)}>Logout</div>}
-          {showLogin && <div className='header-logout-button' onClick={(loginClick)}>Login</div>}
+          <div className="header-username">{globalContextObject.token.Username}</div>
+          {/*showLogout && <div className='header-logout-button' onClick={(logoutClick)}>Logout</div>*/}
+          {/*showLogin && <div className='header-logout-button' onClick={(loginClick)}>Login</div>*/}
           
         </div>
         </div>
