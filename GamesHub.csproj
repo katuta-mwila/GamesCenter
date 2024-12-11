@@ -45,7 +45,7 @@
     <Message Importance="High" Text="Running npm upgrade" ContinueOnError="false"/>
     <Exec Command="nvm list" ContinueOnError="false"/>
     <!--Exec Command="npm-windows-upgrade" ContinueOnError="true"/-->
-    <Error Condition="'1' == '1'" Text="Short curcuiting">
+    <Error Condition="'1' == '1'" Text="Short curcuiting"/>
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
 
