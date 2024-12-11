@@ -44,7 +44,7 @@
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Message Importance="High" Text="Running npm upgrade" ContinueOnError="false"/>
-    <Exec Command="npm install npm@latest" ContinueOnError="false"/>
+    <Exec Command="npm install -g npm@10.8.2" ContinueOnError="false"/>
     <!--Exec Command="npm-windows-upgrade" ContinueOnError="true"/-->
     <Error Condition="'1' == '1'" Text="Short curcuiting"/>
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
