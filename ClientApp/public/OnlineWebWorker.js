@@ -7,8 +7,9 @@ const OnlineWorker = (function(){
     }
 
     const CreateConnection = function(gameId, code, _url){
+        console.log(gameId, code, _url)
         url = _url
-        const wsUrl = `wss://${url}/ws/${gameId}/${code}`
+        const wsUrl = `ws://${url}/ws/${gameId}/${code}`
         console.log(wsUrl)
         socket = new WebSocket(wsUrl)
         

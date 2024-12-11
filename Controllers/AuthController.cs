@@ -1,11 +1,7 @@
-using System.Text.Json;
 using GamesHub.Auth;
-using GamesHub.Entities;
-using GamesHub.Exceptions;
 using GamesHub.Filters;
 using GamesHub.Protocol.Request;
 using GamesHub.Protocol.Response;
-using GamesHub.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamesHub.Controllers;
@@ -18,16 +14,12 @@ public class AuthController : ControllerBase
     private static Object GuestIdLock = new Object();
     private ILogger<AuthController> _logger;
     private readonly IConfiguration configuration;
-    private readonly AuthRepository repository;
-    private readonly GuestAccounts guestAccounts;
 
-    public AuthController(ILogger<AuthController> logger, IConfiguration configuration, AuthRepository repository, GuestAccounts guestAccounts)
+    public AuthController(ILogger<AuthController> logger, IConfiguration configuration)
     {
         this._logger = logger;
         this.configuration = configuration;
         //_logger.LogInformation("AuthController loaded");
-        this.repository = repository;
-        this.guestAccounts = guestAccounts;
     }
 
     private static int GetNextGuestId()
@@ -45,7 +37,7 @@ public class AuthController : ControllerBase
         return Ok($"AuthController is alive");
     }
 
-    [HttpPost("login")]
+    /*[HttpPost("login")]
     [ServiceFilter(typeof(ValidationFilterAttribute))]
     [ServiceFilter(typeof(GenericResourceFilter<LoginResponse>))]
     [ServiceFilter(typeof(HttpResponseExceptionFilter))]
@@ -68,30 +60,29 @@ public class AuthController : ControllerBase
         });
         response.message = "Successfully login in";
         return Ok(response);
-    }
+    }*/
 
     [HttpPost("guest-login")]
     [ServiceFilter(typeof(ValidationFilterAttribute))]
     [ServiceFilter(typeof(GenericResourceFilter<GeneralResponse>))]
     [ServiceFilter(typeof(HttpResponseExceptionFilter))]
-    public IActionResult GuestLogin()
+    public IActionResult GuestLogin(LoginDto dto)
     {
         GeneralResponse response =(GeneralResponse) HttpContext.Items["CustomResponse"];
         int guestId = GetNextGuestId();
         Guid guestGuid = Guid.NewGuid();
-        string guestUsername = $"guest{(guestId < 10 ? 0 : "")}{guestId}";
+        //string guestUsername = $"guest{(guestId < 10 ? 0 : "")}{guestId}";
         int token_expires = 1;
-        string token = AuthHelper.CreateToken(guestUsername, guestGuid, token_expires);
-         HttpContext.Response.Cookies.Append("gameshub_token", token);
+        string token = AuthHelper.CreateToken(dto.Username, guestGuid, token_expires);
+        HttpContext.Response.Cookies.Append("gameshub_token", token);
         response.message = "Successfully logged in as guest";
-        guestAccounts.AddGuestId(guestGuid);
         /*HttpContext.Response.Headers.Add("Location", "/Alive");
         return new StatusCodeResult(303);*/
         return Ok(response);
     }
 
 
-    [HttpPost("register")]
+    /*[HttpPost("register")]
     [ServiceFilter(typeof(ValidationFilterAttribute))]
     [ServiceFilter(typeof(GenericResourceFilter<LoginResponse>))]
     [ServiceFilter(typeof(HttpResponseExceptionFilter))]
@@ -112,5 +103,5 @@ public class AuthController : ControllerBase
         }
         response.message = "Successfully registered";
         return StatusCode(201, response);
-    }
+    }*/
 }

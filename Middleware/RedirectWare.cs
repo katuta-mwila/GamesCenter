@@ -26,28 +26,12 @@ public class RedirectWare
             context.Response.Headers.Add("Location", "/down");
             context.Response.StatusCode = 303;
             return;
-        }if (path.ToString() == "/" || path.ToString() == "/down")
-        {
-           // _logger.LogInformation("No Path");
-            if (token == null)
-                context.Response.Headers.Add("Location", "/login");
-            else
-                context.Response.Headers.Add("Location", "/games");
-            context.Response.StatusCode = 303;
-            return;
-        }else if (path.StartsWithSegments("/login") || path.StartsWithSegments("/register"))
-        {
-            if (token != null && !token.IsGuest)
-            {
-                context.Response.Headers.Add("Location", "/games");
-                context.Response.StatusCode = 303;
-                return;
-            }
-           // _logger.LogInformation("/login or /register");
-        } else if (path.StartsWithSegments("/games"))
+        }
+        
+       else if (path.StartsWithSegments("/games"))
         {
             if (token == null){
-                context.Response.Headers.Add("Location", "/login");
+                context.Response.Headers.Add("Location", "/");
                 context.Response.StatusCode = 303;
                 return;
             }

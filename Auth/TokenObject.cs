@@ -10,7 +10,7 @@ public class TokenObject
     {
         get
         {
-            return this.Username.StartsWith("guest");
+            return true;
         }
     }
 }

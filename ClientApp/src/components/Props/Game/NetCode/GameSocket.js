@@ -40,7 +40,7 @@ const GameSocket = (function(){
         code = c
         const createConnectionObject = {
             type: "createconnection",
-            url: globalContext.hostname + ":" + globalContext.sslPort,
+            url: globalContext.host,
             code,
             gameId
         }

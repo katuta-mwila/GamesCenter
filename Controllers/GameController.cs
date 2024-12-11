@@ -1,11 +1,9 @@
 using System.Text;
 using GamesHub.Auth;
-using GamesHub.Entities;
 using GamesHub.Filters;
 using GamesHub.Game.Server;
 using GamesHub.Protocol.Request;
 using GamesHub.Protocol.Response;
-using GamesHub.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamesHub.Controllers;
@@ -15,13 +13,11 @@ namespace GamesHub.Controllers;
 public class GameController : ControllerBase
 {
     private ILogger<GameController> _logger;
-    private GameRepository repository;
     private GameServer gameServer;
     
-    public GameController(ILogger<GameController> logger, GameRepository repository, GameServer server)
+    public GameController(ILogger<GameController> logger, GameServer server)
     {
         this._logger = logger;
-        this.repository = repository;
         this.gameServer = server;
         //_logger.LogInformation("GameController loaded");
     }

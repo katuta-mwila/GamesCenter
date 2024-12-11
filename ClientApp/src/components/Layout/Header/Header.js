@@ -27,7 +27,7 @@ const Header = () => {
 
         </div>
         <div id="main-header-center" className="main-header-section">
-            <h1 style={{width: "max-content", color: "white", marginBottom: "0"}}>Games Center</h1>
+            <h1 style={{cursor: 'pointer', width: "max-content", color: "white", marginBottom: "0"}} onClick={() => window.location.href = '/games'}>Games Center</h1>
         </div>
         <div id="main-header-right" className='main-header-section'>
         <div className="header-right-settings-section">

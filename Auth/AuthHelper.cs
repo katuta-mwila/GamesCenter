@@ -2,7 +2,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using GamesHub.Entities;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GamesHub.Auth;
@@ -10,7 +9,7 @@ namespace GamesHub.Auth;
 public static class AuthHelper
 {
     public static IConfiguration configuration;
-    public static Password CreateHashedPassword(string password)
+    /*public static Password CreateHashedPassword(string password)
     {
         var hmac = new HMACSHA512();
         byte[] salt = hmac.Key;
@@ -20,14 +19,14 @@ public static class AuthHelper
             PasswordSalt=salt,
             PasswordHash=hash
         };
-    }
+    }*/
 
-    public static bool VerifyPasswordHash(string checkPassword, Password password)
+    /*public static bool VerifyPasswordHash(string checkPassword, Password password)
     {
         var hmac = new HMACSHA512(password.PasswordSalt);
         byte[] computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(checkPassword));
         return computedHash.SequenceEqual(password.PasswordHash);
-    }
+    }*/
 
     public static string CreateToken(string username, Guid userId, int token_expires=30)
     {

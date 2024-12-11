@@ -9,23 +9,21 @@ public class GameRepository : IDisposable
     private bool disposed = false;
 
     private ILogger<GameRepository> _logger;
-    private GamesHubContext dbContext;
 
-    public GameRepository(ILogger<GameRepository> logger, GamesHubContext context)
+    public GameRepository(ILogger<GameRepository> logger)
     {
         this._logger = logger;
-        this.dbContext = context;
     }
 
-    public async Task<bool> CreateHistory(GameHistory history)
+    /*public async Task<bool> CreateHistory(GameHistory history)
     {
         //_logger.LogDebug(JsonSerializer.Serialize(history));
         await dbContext.AddAsync(history);
         await dbContext.SaveChangesAsync();
         return true;
-    }
+    }*/
 
-    protected virtual void Dispose(bool disposing)
+    /*protected virtual void Dispose(bool disposing)
     {
         if (!this.disposed)
         {
@@ -35,11 +33,11 @@ public class GameRepository : IDisposable
             }
         }
         this.disposed = true;
-    }
+    }*/
 
-    public void Dispose()
+    /*public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
-    }
+    }*/
 }
