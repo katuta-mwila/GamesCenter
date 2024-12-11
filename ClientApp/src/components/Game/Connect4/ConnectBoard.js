@@ -53,7 +53,6 @@ const ConnectBoard = () => {
     const adjustScale = () =>{
       const boardWidth = boardRef.current.width
      setBoardScale(prev =>{
-      console.log(prev, boardWidth / 780)
       return boardWidth / 780
      })
     }
@@ -87,7 +86,6 @@ const ConnectBoard = () => {
                     let transform
                     transform = connectGame.lastPlacedUi == i ?  `translateY(${(-posY - (110 * boardScale))}px)` : null
                     const transDuration = connectGame.getFallTime(row)
-                    console.log("Render")
                     return (
                         <div key={id} id={id} className={chipClass} style={{width: `${100 * boardScale}px`, height: `${100 * boardScale}px`, left: posX + "px", top: posY + "px", transform, transitionDuration: transDuration + "s"}}></div>
                     )

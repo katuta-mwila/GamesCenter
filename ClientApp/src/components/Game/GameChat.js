@@ -28,7 +28,6 @@ const GameChat = () => {
         inputRef.current.value = ""
         if (GameSocket.isOpen()){
             GameSocket.sendMessage("PlayerChat", {msg})
-            console.log("yeahhhh")
         } else
             chat.addItem(globalContextObject.token.Username, msg, "black", "black"); 
     }

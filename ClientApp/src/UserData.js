@@ -9,7 +9,6 @@ const UserData = (function(){
       saveData()
     }else 
       user = new UserDataObj(JSON.parse(json))
-    console.log(user)
   }
 
   const saveData = () =>{
@@ -26,7 +25,6 @@ const UserData = (function(){
 
   const setName = (name) =>{
     user.name = name
-    console.log(user)
     saveData()
   }
 

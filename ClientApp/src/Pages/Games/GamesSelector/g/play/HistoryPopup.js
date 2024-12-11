@@ -55,7 +55,6 @@ const HistoryPopup = ({historyDto}) => {
           status = response.status
           return response.json()
         }).then(data =>{
-          console.log(data)
           if (status >= 400){
             inputCollection.addServerErrors(data.errorCollection.collection)
           } else

@@ -27,7 +27,6 @@ const Home = () => {
     }).then(data =>{
       if (status >= 400)
         return
-      console.log("Ayy lmao")
       window.location.href = '/games'
     })
     
@@ -38,7 +37,6 @@ const Home = () => {
   }
 
   const keyDown = e =>{
-    console.log(e)
     if (e.key === 'Enter'){
       enterName()
     }

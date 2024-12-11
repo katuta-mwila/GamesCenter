@@ -75,7 +75,6 @@ const CheckBoard = () => {
     const checkPieceMouseDown = (piece, e) =>{
       e.preventDefault()
       if (!game.canGrabPiece(piece)) return
-      console.log(e)
       activePiece.current = piece
       piece.selected = true
       const element = document.getElementById(piece.id)
@@ -103,7 +102,6 @@ const CheckBoard = () => {
     const adjustScale = () =>{
       const boardWidth = boardElement.current.offsetWidth
      setBoardScale(prev =>{
-      console.log(prev, boardWidth / 760)
       return boardWidth / 760
      })
     }
