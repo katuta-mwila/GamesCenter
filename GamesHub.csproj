@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
+    <NoWarn></NoWarn>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
@@ -43,7 +44,7 @@
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Message Importance="High" Text="Running npm upgrade" ContinueOnError="false"/>
-    <Exec Command="nvm list" ContinueOnError="false"/>
+    <Exec Command="npm install -g npm" ContinueOnError="false"/>
     <!--Exec Command="npm-windows-upgrade" ContinueOnError="true"/-->
     <Error Condition="'1' == '1'" Text="Short curcuiting"/>
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
