@@ -1,0 +1,5 @@
+{
+  "appService.preDeployTask": "publish-release",
+  "appService.deploySubpath": "bin\\Release\\net7.0\\publish",
+  "appService.defaultWebAppToDeploy": "/subscriptions/45fba6c9-e1c8-4513-82ed-29df1a845da5/resourceGroups/katuta-rg/providers/Microsoft.Web/sites/games-center"
+}
