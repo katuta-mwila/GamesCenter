@@ -1,10 +1,14 @@
 # Games Center
 A website containing three games, Tic Tac Toe, Connect 4 and Checkers. All games can be played two player locally, singleplayer vs Ai or two player online.  
-An instance of the website is currently running live at https://gamescenter.online.
 
-To play either of the three games first create an account or login as a guest.
+The website is currently running live [here](https://games-center.azurewebsites.net/).
+
+To play either of the three games first enter a display name then click through the menus for any of the games.
 # Development
-Games Center uses .NET 7.0 for the backend API with the front end developed using react as a framework. All the data is stored on a mysql database with entity framework core 7 acting as the database access framework or ORM. The live example of the website is run on docker using a docker image and served via nginx.
+Games Center uses .NET 7.0 for the backend API with the front end developed using react as the main framework. The purpose of using a backend is to facilitate the
+use of websockets that are required for the online mode to function.
+
+The website was deployed publicly using a Microsoft Azure app service.
 # What I Learned
 * How to create a game Ai using the [minimax](https://en.wikipedia.org/wiki/Minimax) Algorithm. Every game uses this algorithm to create the Ai, each of the difficulties have some slight adjustments to create separation between the difficulties.
 * How to use React context.
@@ -12,7 +16,7 @@ Games Center uses .NET 7.0 for the backend API with the front end developed usin
 * How to use Web Sockets. For the online mode web sockets were necessary to allow two way communication between the client and the server.
 * How to create an online chat. Example of this in the online mode.
 * Using exceptions to short circuit http requests.
-* How to purchase a domain and use an official ssl certification.
+* How to deploy a website to Microsoft Azure
 ## Game Modes
 ### Two Player Local
 This gamemode is for two players playing on the same computer.
